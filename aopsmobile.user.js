@@ -20,7 +20,7 @@ display: block !important;
 position: absolute;
 right: 0px !important;
 top: 2px !important;
-z-index: 11;
+z-index: 25;
 }
 .menu-login-wrapper > *{
 color: black !important;
@@ -37,7 +37,7 @@ position: relative;
 }
 .menubar-labels{
 position: relative !important;
-z-index: 25;
+z-index: 20;
 top: 30px;
 }
 .menubar-hamburger{
