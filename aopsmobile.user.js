@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         AoPS Mobile
 // @namespace    http://tampermonkey.net/
-// @version      0.9.1
+// @version      0.10.1
 // @description  Unofficial script for AoPS.
 // @author       happycupcake
 // @match        https://artofproblemsolving.com/*
@@ -51,27 +51,27 @@ color: white !important;
 }
 /*Posting buttons*/
 .cmty-bbcode-buttons{
-  display: contents;
+display: contents;
 }
 .cmty-posting-button-row{
-  height: initial !important;
+height: initial !important;
 }
 .cmty-posting-environ{
-  background: #333 !important;
+background: #333 !important;
 }
 /*Modals*/
 .aops-modal-frame{
-  width: 70vw !important;
-  height: 60vh !important;
-  top: 20pvh !important;
-  left: 15vw !important;
-  max-height: none !important;
-  display: inline !important;
+width: 70vw !important;
+height: 60vh !important;
+top: 20pvh !important;
+left: 15vw !important;
+max-height: none !important;
+display: inline !important;
 }
 @media (max-width: 700px){
-  .aops-modal-frame{
-  width: 90vw !important;
-  left: 5vw !important;
+.aops-modal-frame{
+width: 90vw !important;
+left: 5vw !important;
 }
 }
 /*Feed*/
@@ -213,6 +213,9 @@ left:  0px !important;
 .aops-modal-wrapper  {
 z-index:  10000000000000 !important;
 }
+.cmty-full-screen::after{
+content: "e";
+}
 `;
     $("head")[0].appendChild(elmntctheme);
     $(".header-underlay")[0].appendChild($(".menubar-hamburger")[0]); //I have no idea how this works.
@@ -224,7 +227,7 @@ z-index:  10000000000000 !important;
         bubbles: true,
         cancelable: true
     }));
-    //Deactivate report removal
+    //Modifications
     var targetNode = document.body;
 
     var config = {childList: true, subtree: true };
@@ -233,6 +236,10 @@ z-index:  10000000000000 !important;
         for(var mutation of mutationsList) {
             $(".cmty-post-report").removeClass("cmty-no-tablet")
         }
+        $(".cmty-full-screen").click(function( event ) {
+            event.stopPropagation();
+            $($(".focus-topic")[$(".focus-topic").length-1]).trigger($.Event("click", { ctrlKey: true }));
+        });
     };
 
     var observer = new MutationObserver(callback);
