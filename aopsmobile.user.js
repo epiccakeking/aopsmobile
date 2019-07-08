@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         AoPS Mobile
 // @namespace    http://tampermonkey.net/
-// @version      0.10.1
+// @version      0.10.2
 // @description  Unofficial script for AoPS.
 // @author       happycupcake
 // @match        https://artofproblemsolving.com/*
@@ -233,9 +233,7 @@ content: "e";
     var config = {childList: true, subtree: true };
 
     var callback = function(mutationsList, observer) {
-        for(var mutation of mutationsList) {
-            $(".cmty-post-report").removeClass("cmty-no-tablet")
-        }
+        $(".cmty-post-report").removeClass("cmty-no-tablet")
         $(".cmty-full-screen").click(function( event ) {
             event.stopPropagation();
             $($(".focus-topic")[$(".focus-topic").length-1]).trigger($.Event("click", { ctrlKey: true }));
